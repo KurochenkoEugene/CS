@@ -56,7 +56,7 @@ namespace WindowsFormsApplication1
             }
 
             string criteria = "?" + cr; 
-            string[] files = Directory.GetFiles(dir, criteria);
+            string[] files = Directory.GetFiles(dir, criteria, SearchOption.AllDirectories);
             return files;
         }
 
