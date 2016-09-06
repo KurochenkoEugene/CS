@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
          **/
          public string[] searchFiles(string dir, string cr)
         {
-            if(cr == "")
+            if(String.IsNullOrWhiteSpace(cr))
             {
                 cr = "*";
             }
@@ -63,41 +63,41 @@ namespace WindowsFormsApplication1
         /*
          * Click on button "Open" 
          */
-        private void button1_Click(object sender, EventArgs e)
+        private void btnOpen_Click(object sender, EventArgs e)
         {
             Stream myStream = null;
-            textBox1.Text = getDirect();
+            txtDirectory.Text = getDirect();
         }
 
         /**
          * Click on button "Search"
          **/
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            textBox3.Text = "";
+            txtResults.Text = "";
             try
             {
                 //get array of find files
-                string[] listFiles = searchFiles(textBox1.Text, textBox2.Text);
+                string[] listFiles = searchFiles(txtDirectory.Text, txtFileType.Text);
                 for (int i = 0; i < listFiles.Length; i++)
                 {
-                    textBox3.Text += listFiles[i] + "\r\n";
+                    txtResults.Text += listFiles[i] + "\r\n";
                 }
-                textBox3.Visible = true;
+                txtResults.Visible = true;
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Ошибка поиска: " + ex.Message);
             }
             
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox3.Visible = false;
+            txtDirectory.Text = "";
+            txtFileType.Text = "";
+            txtResults.Text = "";
+            txtResults.Visible = false;
         }
     }
 }
